@@ -36,8 +36,7 @@
       </div>
     </div>
     <script>
-
-     //   https://api.openweathermap.org/data/2.5/weather?q=germany&appid=def197296a57200c45364a64da065e81 
+      //   https://api.openweathermap.org/data/2.5/weather?q=germany&appid=def197296a57200c45364a64da065e81
 
       const apiKey = "def197296a57200c45364a64da065e81";
       //const apiKey = "9be433bbd148d24f244183c85255bf05"
@@ -45,7 +44,6 @@
         "https://api.openweathermap.org/data/2.5/weather?units=metric&q=bangalore";
 
       async function checkWeather() {
-
         const response = await fetch(apiUrl + `&appid=${apiKey}`);
         var data = await response.json();
 
