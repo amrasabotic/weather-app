@@ -44,6 +44,7 @@
 
       const searchBox = document.querySelector(".search input");
       const searchBtn = document.querySelector(".search button");
+      const weatherImg = document.querySelector(".weather-icon");
 
       async function checkWeather(city) {
         const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
@@ -58,12 +59,24 @@
           Math.round(data.wind.speed) + "km/h";
         document.querySelector(".humidity").innerHTML =
           data.main.humidity + "%";
+
+        const vrijeme = data.weather[0].main;
+        console.log(vrijeme);
+
+        if (vrijeme == "Clouds") {
+          weatherImg.src = "img/clouds.png";
+        } 
       }
 
       //checkWeather("Pristina");
 
       searchBtn.addEventListener("click", () => {
-        checkWeather(searchBox.value);
+        if (searchBox.value == "") {
+          checkWeather("Pristina");
+        } else {
+          checkWeather(searchBox.value);
+          searchBox.value = "";
+        }
       });
     </script>
   </body>
