@@ -64,3 +64,11 @@ body{
 .col img{
     height: 60px;
 }
+.weather{
+    display: none;
+}
+
+.invalid{
+    display: none;
+    padding-top: 30px;
+}

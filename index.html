@@ -13,6 +13,9 @@
         <input type="text" placeholder="enter city name" spellcheck="false" />
         <button><img src="img/search.png" alt="Search" /></button>
       </div>
+      <div class="invalid">
+        <p>Invalid city name!</p>
+      </div>
       <div class="weather">
         <img src="img/rain.png" class="weather-icon" />
         <h1 class="temp">22°C</h1>
@@ -48,6 +51,12 @@
 
       async function checkWeather(city) {
         const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+
+        if (response.status == 404){
+          document.querySelector(".weather").style.display = "none";
+
+          document.querySelector(".invalid").style.display = "block";
+        }
         var data = await response.json();
 
         console.log(data);
@@ -65,17 +74,36 @@
 
         if (vrijeme == "Clouds") {
           weatherImg.src = "img/clouds.png";
-        } 
+        }
+        if (vrijeme == "Clear") {
+          weatherImg.src = "img/clear.png";
+        }
+        if (vrijeme == "Rain") {
+          weatherImg.src = "img/rain.png";
+        }
+        if (vrijeme == "Dizzle") {
+          weatherImg.src = "img/dizzle.png";
+        }
+        if (vrijeme == "Mist") {
+          weatherImg.src = "img/mist.png";
+        }
+        if (vrijeme == "Snow") {
+          weatherImg.src = "img/snow.png";
+        }
       }
 
       //checkWeather("Pristina");
 
       searchBtn.addEventListener("click", () => {
-        if (searchBox.value == "") {
-          checkWeather("Pristina");
-        } else {
+        if (searchBox.value != "") {
+          document.querySelector(".invalid").style.display = "none";
+          document.querySelector(".weather").style.display = "block";
           checkWeather(searchBox.value);
           searchBox.value = "";
+        } else {
+          searchBox.value = "";
+          document.querySelector(".invalid").style.display = "block";
+          document.querySelector(".weather").style.display = "none";
         }
       });
     </script>
